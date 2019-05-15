@@ -51,7 +51,6 @@ it('lets user2 buy a star, if it is put up for sale', async() => {
     let balance = web3.utils.toWei(".05", "ether");
     await instance.createStar('awesome star', starId, {from: user1});
     await instance.putStarUpForSale(starId, starPrice, {from: user1});
-    let balanceOfUser1BeforeTransaction = await web3.eth.getBalance(user2);
     await instance.buyStar(starId, {from: user2, value: balance});
     assert.equal(await instance.ownerOf.call(starId), user2);
 });
@@ -65,7 +64,6 @@ it('lets user2 buy a star and decreases its balance in ether', async() => {
     let balance = web3.utils.toWei(".05", "ether");
     await instance.createStar('awesome star', starId, {from: user1});
     await instance.putStarUpForSale(starId, starPrice, {from: user1});
-    let balanceOfUser1BeforeTransaction = await web3.eth.getBalance(user2);
     const balanceOfUser2BeforeTransaction = await web3.eth.getBalance(user2);
     await instance.buyStar(starId, {from: user2, value: balance, gasPrice:0});
     const balanceAfterUser2BuysStar = await web3.eth.getBalance(user2);
@@ -78,6 +76,16 @@ it('lets user2 buy a star and decreases its balance in ether', async() => {
 it('can add the star name and star symbol properly', async() => {
     // 1. create a Star with different tokenId
     //2. Call the name and symbol properties in your Smart Contract and compare with the name and symbol provided
+    let instance = await StarNotary.deployed();
+    const name = "My Star Notary";
+    const symbol = "MsN";
+    let result = false;
+    let contractName = await instance.name.call();
+    let contractSymbol = await instance.symbol.call();
+    
+    result = name === contractName && symbol === contractSymbol;
+
+    assert.equal(result, true, 'name & symbol are not set')
 });
 
 it('lets 2 users exchange stars', async() => {
