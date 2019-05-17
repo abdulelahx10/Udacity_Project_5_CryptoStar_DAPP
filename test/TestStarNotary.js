@@ -123,7 +123,7 @@ it('lookUptokenIdToStarInfo test', async() => {
     let tokenId = 9;
     await instance.createStar('Awesome Star!', tokenId, {from: accounts[0]})
     // 2. Call your method lookUptokenIdToStarInfo
-    let starName = await instance.lookUptokenIdToStarInfo(tokenId, {from: accounts[0]});
+    let starName = await instance.lookUptokenIdToStarInfo.call(tokenId);
     // 3. Verify if you Star name is the same
     assert.equal(starName, 'Awesome Star!');
 });
