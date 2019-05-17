@@ -20,6 +20,4 @@ DSN
 ```
 0xfe50600dc797dab6556893f85a8be0ca49d3f376
 ```
-```
-https://rinkeby.etherscan.io/address/0xfe50600dc797dab6556893f85a8be0ca49d3f376
-```
+[Link to Etherscan](https://rinkeby.etherscan.io/address/0xfe50600dc797dab6556893f85a8be0ca49d3f376)
